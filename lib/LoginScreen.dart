@@ -1,6 +1,7 @@
 import 'package:e_gold/Glassmarphishm.dart';
 import 'package:e_gold/RegistionScreeen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'HomeScreen.dart';
 // Import your home screen
@@ -15,6 +16,14 @@ class _LoginScreenState extends State<LoginScreen> {
   String _email = '';
   String _password = '';
   bool isVisible=false;
+ SharedPreferences? _prefs;
+
+   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +127,15 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _login() {
+  void _login() async{
+    _prefs =await   SharedPreferences.getInstance();
     if (_formKey.currentState!.validate()) {
+
       _formKey.currentState!.save();
       // Perform login with _email and _password
+     await   _prefs!.setBool('isLoggedIn', true);
+
+
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => HomeScreen()),
       );
