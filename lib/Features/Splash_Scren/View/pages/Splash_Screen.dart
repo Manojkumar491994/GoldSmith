@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+import 'dart:async';
 import 'package:e_gold/Features/Login_Scren/View/pages/login_Screen.dart';
+import 'package:e_gold/Core/Glass_efect.dart';
 import 'package:flutter/material.dart';
 
 class splashScreen extends StatefulWidget {
@@ -13,8 +15,9 @@ class _splashScreenState extends State<splashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3)).then(
-      (value) => Navigator.pushReplacement(
+    Timer(
+      Duration(seconds: 3),
+      () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => loginScreen(),
@@ -32,12 +35,13 @@ class _splashScreenState extends State<splashScreen> {
         children: [
           Container(
             height: h,
-            width: h,
+            width: w,
             child: Image.asset(
               "Assets/background.png",
               fit: BoxFit.cover,
             ),
           ),
+          glassEfect(),
           Center(
             child: Container(
               child: Image.asset("Assets/logo.png"),
