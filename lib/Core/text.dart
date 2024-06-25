@@ -26,4 +26,20 @@ class txt {
       fontWeight: FontWeight.w600,
     );
   }
+
+  static TextStyle Forgettext() {
+    return TextStyle(
+      fontSize: 20,
+      color: Colors.blue,
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  static TextStyle label2text() {
+    return TextStyle(
+      fontSize: 20,
+      color: Colors.black,
+      fontWeight: FontWeight.w600,
+    );
+  }
 }
