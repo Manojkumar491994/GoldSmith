@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:e_gold/Core/text.dart';
+import 'package:e_gold/Features/Home_Scren/View/pages/Home_Pages.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class registerScreen extends StatefulWidget {
   const registerScreen({super.key});
@@ -12,6 +14,7 @@ class registerScreen extends StatefulWidget {
 
 class _registerScreenState extends State<registerScreen> {
   final _fromKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +49,7 @@ class _registerScreenState extends State<registerScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              style: txt.labeltext(),
                               decoration: InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.person,
@@ -73,12 +77,14 @@ class _registerScreenState extends State<registerScreen> {
                                 if (name!.isEmpty) {
                                   return " ";
                                 }
+                                return null;
                               },
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              style: txt.labeltext(),
                               decoration: InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.mail_rounded,
@@ -106,12 +112,14 @@ class _registerScreenState extends State<registerScreen> {
                                 if (mail!.isEmpty) {
                                   return " ";
                                 }
+                                return null;
                               },
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              style: txt.labeltext(),
                               obscureText: true,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(
@@ -140,6 +148,7 @@ class _registerScreenState extends State<registerScreen> {
                                 if (pass!.isEmpty) {
                                   return " ";
                                 }
+                                return null;
                               },
                             ),
                           ),
@@ -156,7 +165,7 @@ class _registerScreenState extends State<registerScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Scaffold(),
+                                    builder: (context) => homeScreen(),
                                   ),
                                 );
                               }
