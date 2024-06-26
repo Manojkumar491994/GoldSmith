@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'dart:async';
-import 'package:e_gold/Features/Home_Scren/View/pages/Home_Pages.dart';
 import 'package:e_gold/Features/Login_Scren/View/pages/login_Screen.dart';
 import 'package:e_gold/Core/Glass_efect.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key});

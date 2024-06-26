@@ -3,7 +3,6 @@
 import 'package:e_gold/Core/text.dart';
 import 'package:e_gold/Features/Home_Scren/View/pages/Home_Pages.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class registerScreen extends StatefulWidget {
   const registerScreen({super.key});
