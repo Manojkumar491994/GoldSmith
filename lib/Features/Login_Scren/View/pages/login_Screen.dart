@@ -87,6 +87,8 @@ class _loginScreenState extends State<loginScreen> {
                               validator: (email) {
                                 if (email!.isEmpty) {
                                   return " ";
+                                } else {
+                                  return null;
                                 }
                               },
                             ),
@@ -129,6 +131,8 @@ class _loginScreenState extends State<loginScreen> {
                               validator: (password) {
                                 if (password!.isEmpty) {
                                   return " ";
+                                } else {
+                                  return null;
                                 }
                               },
                             ),
