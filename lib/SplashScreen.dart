@@ -1,10 +1,13 @@
+import 'dart:async';
+
+import 'package:e_gold/Admin.dart';
 import 'package:e_gold/Glassmarphishm.dart';
 import 'package:e_gold/HomeScreen.dart';
 import 'package:e_gold/LoginScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'dart:async';
+
 
 import 'package:shared_preferences/shared_preferences.dart';
 // Import your home screen
@@ -18,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _animation;
-  SharedPreferences? _prefs;
+
 
   @override
   void initState() {
@@ -84,17 +87,24 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void start() async{
-     _prefs =await   SharedPreferences.getInstance();
-     bool? isLogin=await  _prefs!.getBool('isLoggedIn');
+    SharedPreferences  _prefs =await   SharedPreferences.getInstance();
+     bool? isLogin=await  _prefs.getBool('isLoggedIn');
+     int? isAdmin=await  _prefs.getInt('isAdmin');
      print("isLogin $isLogin");
     Timer(Duration(seconds: 5), () {
       if(isLogin==true){
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
+        if(isAdmin==1) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        }else{
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => Admin()),
+          );
+        }
       }else{
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => LoginScreen("manoj","18")),
         );
       }
 

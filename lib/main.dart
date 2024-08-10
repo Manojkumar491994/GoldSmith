@@ -1,10 +1,21 @@
 import 'package:e_gold/LoginScreen.dart';
+import 'package:e_gold/controller/CounterModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'Getapi.dart';
 import 'SplashScreen.dart';
+import 'cartPAge.dart';
+import 'controller/api_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+     ChangeNotifierProvider(create: (context) => ProductsProvider()),
+     ChangeNotifierProvider(create: (context) => CounterModel()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         // '/': (context) => SplashScreen(),
-        '/login': (context) => LoginScreen(),
+        '/login': (context) => LoginScreen.noparam(),
       },
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -39,10 +50,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  SplashScreen(),
+      home: GetProducts(),
     );
   }
 }
-
-
-

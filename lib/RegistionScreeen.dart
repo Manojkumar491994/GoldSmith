@@ -164,7 +164,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       _formKey.currentState!.save();
       // Perform registration logic with _username, _email, _password, _country, and _gender
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen.noparam()),
       );
     } else if (!_termsAccepted) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

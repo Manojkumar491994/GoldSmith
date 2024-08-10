@@ -1,3 +1,4 @@
+import 'package:e_gold/Admin.dart';
 import 'package:e_gold/Glassmarphishm.dart';
 import 'package:e_gold/RegistionScreeen.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,12 @@ import 'HomeScreen.dart';
 // Import your home screen
 
 class LoginScreen extends StatefulWidget {
+  String? name;
+  String? age;
+
+  LoginScreen(this.name, this.age);
+  LoginScreen.noparam();
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -16,7 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String _email = '';
   String _password = '';
   bool isVisible=false;
- SharedPreferences? _prefs;
+
+ bool isAdmin=false;
 
    @override
   void initState() {
@@ -30,10 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(color: Colors.white),
-          ),
+
           GlassmorphicContainer(
+
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Center(
@@ -96,6 +103,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         onSaved: (value) => _password = value!,
                       ),
                       SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: isAdmin,
+                            onChanged: (value) {
+                              setState(() {
+                                isAdmin = value!;
+                              });
+                            },
+                          ),
+                          Text('isAdmin',style: TextStyle(color: Colors.black,fontSize: 20),),
+                        ],
+                      ),
                       ElevatedButton(
                         onPressed: _login,
                         child: Text('Login'),
@@ -107,6 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text('Forgot Password?'),
                       ),
+
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).push(
@@ -128,17 +149,29 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login() async{
-    _prefs =await   SharedPreferences.getInstance();
+
+    SharedPreferences _prefs =await   SharedPreferences.getInstance();
     if (_formKey.currentState!.validate()) {
 
       _formKey.currentState!.save();
       // Perform login with _email and _password
-     await   _prefs!.setBool('isLoggedIn', true);
+      if(isAdmin==true){
+        await   _prefs.setBool('isLoggedIn', true);
+        await  _prefs.setInt("isAdmin", 0);
 
 
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => Admin()),
+        );
+      }else
+        {
+          await   _prefs!.setBool('isLoggedIn', true);
+          await  _prefs!.setInt("isAdmin", 1);
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        }
+
     }
   }
 }
