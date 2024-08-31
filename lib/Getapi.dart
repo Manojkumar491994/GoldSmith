@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:e_gold/SharedPreferenceHelper.dart';
 import 'package:e_gold/cart_page.dart';
 import 'package:e_gold/controller/api_provider.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'Model/product2.dart';
 import 'controller/CounterModel.dart';
+
+
 
 class GetProducts extends StatefulWidget {
   const GetProducts({super.key});
@@ -22,11 +25,13 @@ class _GetProductsState extends State<GetProducts> {
   void initState() {
     super.initState();
     Provider.of<ProductsProvider>(context, listen: false).getProductsApi();
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColorDark,
       /* body: FutureBuilder<List<Products>>(
         future: futureProducts,
         builder: (context, snapshot) {
@@ -50,9 +55,10 @@ class _GetProductsState extends State<GetProducts> {
         child: Consumer2<ProductsProvider, CounterModel>(
           builder: (BuildContext context, ProductsProvider value,
               CounterModel value2, Widget? child) {
+            print("value ${value.isLoading}");
             return value.isApiError
                 ? Center(child: Text("somthing Went Wrong ${value2.count}"))
-                : value.isLoading
+                : value!.isLoading
                     ? Center(
                         child: Shimmer.fromColors(
                           baseColor: Colors.grey,
@@ -72,7 +78,7 @@ class _GetProductsState extends State<GetProducts> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("Price: "),
+                                        Text("Prices: "),
                                         Text("Rating: "),
                                       ],
                                     ),
@@ -125,6 +131,10 @@ class _GetProductsState extends State<GetProducts> {
                                         Text("Rating: ${product.rating?.rate}"),
                                         GestureDetector(
                                             onTap: () {
+
+                                              Sharedpreferencehelper.setBool("isCartAdded", true);
+
+
                                               Provider.of<CounterModel>(context,
                                                       listen: false)
                                                   .addToCart(Cart(

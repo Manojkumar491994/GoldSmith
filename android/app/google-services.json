@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067285558220",
+    "project_id": "egold-c510a",
+    "storage_bucket": "egold-c510a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067285558220:android:d7631bbd60534de381e369",
+        "android_client_info": {
+          "package_name": "com.fita.e_gold"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC332ukBAv2u3Cd7WauneWqnZbid8qdTsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

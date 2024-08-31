@@ -32,8 +32,13 @@ dependencies:
     sdk: flutter
 
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  calculator_utils:
+    path: D:\fita class\flutter\GoldSmith\calculator_utils
+  fita_cal:
+    path: D:\fita class\flutter\GoldSmith\fita_cal
   cupertino_icons: ^1.0.2
   shared_preferences:
   palette_generator: ^0.3.3+4
@@ -41,6 +46,14 @@ dependencies:
   cached_network_image: ^3.4.0
   provider: ^6.1.2
   shimmer: ^3.0.0
+  firebase_core: ^3.4.0
+  firebase_auth: ^5.2.0
+  cloud_firestore: ^5.3.0
+  fl_chart: ^0.69.0
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+  firebase_messaging: ^15.1.0
+
 
 
 dev_dependencies:

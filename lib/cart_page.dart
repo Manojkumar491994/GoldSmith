@@ -1,3 +1,4 @@
+import 'package:e_gold/SharedPreferenceHelper.dart';
 import 'package:e_gold/controller/CounterModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,13 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getPrefernce();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -84,5 +92,11 @@ class _CartPageState extends State<CartPage> {
         ),
       ),
     );
+  }
+
+  void getPrefernce() async{
+
+    bool isClicked= await Sharedpreferencehelper.getBool("isCartAdded");
+    print("$isClicked");
   }
 }
